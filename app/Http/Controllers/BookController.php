@@ -14,7 +14,8 @@ class BookController extends Controller
     public function index()
     {
         // $books = Book::all();
-        $books = Book::paginate();
+        /* $books = Book::paginate(); */
+        $books = Book::orderBy('created_at', 'DESC')->paginate(12);
         return view('books.index', [
             'books' => $books,
         ]);
@@ -24,8 +25,7 @@ class BookController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-       
+    {  
         return view('books.create');
     }
 
@@ -34,7 +34,18 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        $data = $request->all();
+       /*  dd($data); */
+        $newBook = new Book();
+        $newBook->title = $data['title'];
+        $newBook->description = $data['description'];
+        $newBook->author = $data['author'];
+        $newBook->price = $data['price'];
+        $newBook->img = $data['img'];
+        $newBook->save();
+
+        //Reindirizzamento all'index
+        return redirect()->route('books.index');
     }
 
     /**
