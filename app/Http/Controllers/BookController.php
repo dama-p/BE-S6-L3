@@ -13,7 +13,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        // $books = Book::all();
+        $books = Book::paginate();
+        return view('books.index', [
+            'books' => $books,
+        ]);
     }
 
     /**
@@ -21,7 +25,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+       
+        return view('books.create');
     }
 
     /**

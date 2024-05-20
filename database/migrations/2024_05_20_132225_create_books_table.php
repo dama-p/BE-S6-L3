@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100)->unique();
+            $table->string('description', 1000)->unique();
             $table->integer('price')->nullable();
             $table->string('author', 30);
             $table->string('img', 300)->nullable();
