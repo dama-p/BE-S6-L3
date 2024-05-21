@@ -18,6 +18,6 @@ class UserSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        User::factory(100)->create();
+        User::factory(15)->create();
     }
 }
