@@ -1,12 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [PageController::class, 'homepage'])->name('homepage');
 
 Route::resource('books', BookController::class)->only('index');
 
