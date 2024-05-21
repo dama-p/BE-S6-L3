@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price')->nullable();
             $table->string('author', 30);
             $table->string('img', 300)->nullable();
+            $table->bigInteger('user_id')->nullable(); //user_id tabella libri
             $table->timestamps();
         });
     }

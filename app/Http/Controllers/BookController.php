@@ -42,6 +42,7 @@ class BookController extends Controller
         $newBook->author = $data['author'];
         $newBook->price = $data['price'];
         $newBook->img = $data['img'];
+        $newBook->user_id = $request->user()->id;
         $newBook->save();
 
         //Reindirizzamento all'index
