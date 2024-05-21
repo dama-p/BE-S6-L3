@@ -64,7 +64,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -72,7 +72,16 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $data = $request->all();
+      
+        $book->title = $data['title'];
+        $book->author = $data['author'];
+        $book->price = $data['price'];
+        $book->img = $data['img'];
+        $book->update();
+
+      
+        return redirect()->route('books.show', compact('book'));
     }
 
     /**

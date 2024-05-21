@@ -12,7 +12,7 @@
         <a href=" {{ route('books.show', ['book' => $book]) }} "> <h5 class="card-title">{{$book->title}}</h5></a>
       <p class="card-text">{{$book->description}}</p>
       <p>{{$book->price}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a class="btn btn-warning" href="{{ route('books.edit', ['book' => $book]) }}">Edit</a>
       <form method="POST" action=" {{ route('books.destroy', ['book' => $book]) }}">
         @method('DELETE') 
         @csrf
