@@ -13,6 +13,11 @@
       <p class="card-text">{{$book->description}}</p>
       <p>{{$book->price}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
+      <form method="POST" action=" {{ route('books.destroy', ['book' => $book]) }}">
+        @method('DELETE') 
+        @csrf
+        <button class="btn btn-danger">Delete</button>
+        </form>
     </div>
   </div>
       
