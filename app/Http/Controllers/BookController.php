@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
-use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -65,6 +66,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+        if (Auth::user()->id !== $book->user_id) abort(401);
         return view('books.edit', compact('book'));
     }
 
@@ -73,6 +75,7 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
+        if (Auth::user()->id !== $book->user_id) abort(401);
         $data = $request->all();
       
         $book->title = $data['title'];
@@ -90,6 +93,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if (Auth::user()->id !== $book->user_id) abort(401);
        $book->delete();
        return redirect()->route('books.index');
     }
